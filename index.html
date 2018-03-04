@@ -8,7 +8,7 @@
 	<title>count++</title>
 </head>
 <body>
-	<h1 id = "title">count++;</h1>
+	<h1 id = "title">count++</h1>
 	<p style="text-align: center">Give us some text and we'll let you know which words are redundant!</p>
 	<div class="row">
 		<div class ="column">
@@ -21,7 +21,7 @@
 		<div class ="column">
 			<div id = 'settings'>
 				<h2 style="color:#43587c">current settings</h2>
-				<p id = "max">maximum frequency: 20% of the word count</p>
+				<p id = "max">maximum frequency: 10% of the word count</p>
 				<p>words ignoring: I, the, this, are, will, is, to, of, that, as, for, and</p>
 			</div><br><hr>
 			<div id = 'result_words'>
@@ -44,7 +44,7 @@
 			var arr = value.split(" ");
 			var max_freq = parseInt(0.1*arr.length,0); 
 			document.getElementById("max").innerHTML = "maximum frequency: " + max_freq;
-			var text = "";
+			var text = " ";
 			var unique  = [];
 		
 
