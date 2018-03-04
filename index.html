@@ -40,14 +40,24 @@
 
 	<script type ="text/javascript">
 		$( "#enter" ).click(function() {
+			//entire text input
 			var value = $("#utext").val();
+			
+			//array of all words
 			var arr = value.split(" ");
+			
+			//maximum frequency is 10% of word count
 			var max_freq = parseInt(0.1*arr.length,0); 
+			
 			document.getElementById("max").innerHTML = "maximum frequency: " + max_freq;
+			
 			var text = " ";
+
+			//array of unique words 
 			var unique  = [];
 		
 
+			// this loop filters the array with all the words and adds elements that are unique in the array unique
 			for (i= 0; i < arr.length ; i++){
 				var exist = false;
 				for (j = 0 ; j < unique.length; j++) {	
@@ -61,9 +71,11 @@
 				
 			}
 			
+			//count is an array that counts the occurences of every unique element
 			var count = []; 
 			count.length = unique.length;
 
+			//counts how many times each unique element occurs in the entire text
 			for (i =0; i < unique.length; i++){
 				count[i] = 0;
 				for (j = 0 ; j < arr.length; j++) {	
@@ -73,9 +85,11 @@
 				}
 			}
 
+			//num_uniques is the number of unique words from the text input
 			var num_uniques = unique.length;
 			var i = num_uniques - 1;
 
+			//outputs all the unique words that occur more than the maximum frequency into a table
 			while(num_uniques > 0 && i > -1) {
 				var word = unique.pop();
 				var num = count[i];
@@ -85,6 +99,8 @@
 				}
 				i--;
 			}
+
+			//updates the word_list to include all the words above
 			document.getElementById("words_list").innerHTML = text; 
 		});
 		
