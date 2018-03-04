@@ -1,0 +1,33 @@
+body {
+	font-family:'Inconsolata'; 
+	margin-top: 50px;
+	margin-left: 100px; 
+	margin-right: 100px;
+}
+#title {
+	font-size:50px;
+	text-align: center;
+}
+#user_input{
+	text-align: center;
+	width:100%;
+}
+#result_words {
+	text-align: left;
+}
+#settings {
+	text-align: left;
+}
+textarea{
+	resize: none;
+}
+.column {
+    float: left;
+    width: 50%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
