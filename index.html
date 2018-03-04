@@ -21,8 +21,8 @@
 		<div class ="column">
 			<div id = 'settings'>
 				<h2 style="color:#43587c">current settings</h2>
-				<p id = "max">maximum frequency: 10% of the word count</p>
-				<p>words ignoring: I, the, this, are, will, is, to, of, that, as, for, and</p>
+				<p id = "max">measure of redundancy: 10% of the word count</p>
+				<p>words ignoring: I, the, this, are, is, to, of, that, as, for, and</p>
 			</div><br><hr>
 			<div id = 'result_words'>
 				<h2 id = "result_msg" style="color:#43587c">redundant words</h2>
@@ -49,8 +49,14 @@
 			//maximum frequency is 10% of word count
 			var max_freq = parseInt(0.1*arr.length,0); 
 			
-			document.getElementById("max").innerHTML = "maximum frequency: " + max_freq;
+			document.getElementById("max").innerHTML = "measure of redundancy: " + max_freq;
 			
+			//clear rows each time enter button is pressed
+			var x = document.getElementById("table_result").rows.length;
+			for (i = 1; i < x; i++){
+				document.getElementById("table_result").deleteRow(i);
+			}
+
 			var text = " ";
 
 			//array of unique words 
