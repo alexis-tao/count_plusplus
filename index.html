@@ -2,6 +2,8 @@
 <html>
  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
  <link rel="stylesheet" href="style.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <head>
 	<title>count++</title>
 </head>
@@ -11,23 +13,35 @@
 	<div class="row">
 		<div class ="column">
 			<form id = "user_input">
-				<textarea id="user_text" name = "text" rows ="30" cols="50" placeholder="Enter your text"></textarea> <br>
-				<input type="submit" id ="textbox" value="Submit">
+				<input type = "textbox" id="text" name = "text" placeholder="Enter some text! For example, Today I had a very, very, very good day. This happens very happen often and that is very good. I hope tomorrow will also be a good day. Good is the new good. Good people are also good. "></textarea> <br>
+				<button type="button" name ="textbox" id ="textbox" >Enter</button>
 			</form>
 		</div>
 
 		<div class ="column">
 			<div id = 'settings'>
-				<h2>current settings</h2>
-				<p>max frequency (10% of word count): </p>
-				<p>list of words to ignore: </p>
-				<input type="submit" value = "Customize Settings">
+				<h2 style="color:#43587c">current settings</h2>
+				<p>maximum frequency: 4</p>
+				<p>list of words to ignore: I, the, this, are, will</p>
 			</div><br><hr>
 			<div id = 'result_words'>
-				<h2>redundant words</h2>
-				<p>these words</p><br>
+				<h2 style="color:#43587c">you've used these words more than 4 times:</h2>
+				<li>very: 5 occurences</li>
+				<li>good: 7 occurences</li><br>
 			</div>
 		</div>
 	</div>
+
+	<script>
+		$( "#textbox" ).click(function() {
+			//var wordsArray[]; 
+			var value = $("#text").val();
+			//wordsArray.push(value); 
+			var seperate = value.split();
+			alert(seperate);
+ 			//alert( $("#text").val() );
+		});
+	</script>
+
 </body>
 </html> 
