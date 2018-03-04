@@ -25,8 +25,8 @@
 				<p>words ignoring: I, the, this, are, will</p>
 			</div><br><hr>
 			<div id = 'result_words'>
-				<h2 id = "result" style="color:#43587c"></h2>
-				<p id = "words"></p> <br>
+				<h2 id = "result_msg" style="color:#43587c"></h2>
+				<p id = "words_list"></p> <br>
 			</div>
 		</div>
 	</div>
@@ -39,52 +39,55 @@
 			document.getElementById("max").innerHTML = "maximum frequency: " + max_freq;
 			var text = "<ul>";
 			var unique  = [];
-			var count = []; 
-			var occurs = 0; 
+		
 
 			for (i= 0; i < arr.length ; i++){
-				var a = parseInt(arr[i])];
 				var exist = false;
 				for (j = 0 ; j < unique.length; j++) {	
 					if (arr[i] == unique[j]) {
-						exist = true;
+						exist = true ;
 					}
-				}
-				else if (exist == false) {
+				} 
+				if (exist == false) {
 					unique.push(arr[i]);
-					count[a] = 1;
 				}
+				
 			}
+			
+			var count = []; 
 			count.length = unique.length;
 
 			for (i =0; i < unique.length; i++){
+				count[i] =0;
 				for (j = 0 ; j < arr.length; j++) {	
 					if (arr[j] == unique[i]) {
-						count[i]++;
+						count[i] += 1;
+						alert(count[i]);
 					}
 				}
 			}
 
 			var num_uniques = unique.length;
+			var i = num_uniques - 1;
 
-			while(num_uniques > 0) {
+			while(num_uniques > 0 && i > -1) {
 				var word = unique.pop();
-				var word_int = parseInt(word);
-				var num = count[word_int];
+				var num = count[i];
+
 				if (num > max_freq) {
 					text += "<li>"+ word + " " + num +"</li>"; 
 				}
-				num_uniques = num_uniques - 1;
+				i--;
 			}
 
 			text += "<ul>";
 			if (max_freq == 1) {
-				document.getElementById("result").innerHTML = "words used more than " + max_freq + 	" time: ";
+				document.getElementById("result_msg").innerHTML = "words used more than " + max_freq + 	" time: ";
 			}
 			else {
-				document.getElementById("result").innerHTML = "words used more than " + max_freq + 	" times: ";
+				document.getElementById("result_msg").innerHTML = "words used more than " + max_freq + 	" times: ";
 			}
-			document.getElementById("words").innerHTML = text;
+			document.getElementById("words_list").innerHTML = text; 
 		});
 		
 
