@@ -24,8 +24,15 @@
 				<p>words ignoring: I, the, this, are, will</p>
 			</div><br><hr>
 			<div id = 'result_words'>
-				<h2 id = "result_msg" style="color:#43587c"></h2>
-				<p id = "words_list"></p> <br>
+				<h2 id = "result_msg" style="color:#43587c">redundant words</h2>
+				<table id = "table_result" style="width:100%">
+					<tr>
+						<th>Words</th>
+						<th>Occurences</th>
+					</tr>
+					<tr><p id = words_list></p></tr>
+				</table>
+				<br>
 			</div>
 		</div>
 	</div>
@@ -36,7 +43,7 @@
 			var arr = value.split(" ");
 			var max_freq = parseInt(0.2*arr.length,0); 
 			document.getElementById("max").innerHTML = "maximum frequency: " + max_freq;
-			var text = "<ul>";
+			var text = "";
 			var unique  = [];
 		
 
@@ -73,17 +80,9 @@
 				var num = count[i];
 
 				if (num > max_freq) {
-					text += "<li>"+ word + " " + num +"</li>"; 
+					$('table').append( "<tr> \ <td>"+ word + "</td> \ <td>" + num +"</td></tr>"); 
 				}
 				i--;
-			}
-
-			text += "<ul>";
-			if (max_freq == 1) {
-				document.getElementById("result_msg").innerHTML = "words used more than " + max_freq + 	" time: ";
-			}
-			else {
-				document.getElementById("result_msg").innerHTML = "words used more than " + max_freq + 	" times: ";
 			}
 			document.getElementById("words_list").innerHTML = text; 
 		});
