@@ -9,12 +9,14 @@
 </head>
 <body>
 	<h1 id = "title">count++</h1>
-	<p style="text-align: center">Give us some text and we'll let you know which words are redundant!</p>
+	<h3 style="text-align: center">Type. Enter. Delete. Repeat.</h3>
+	<br><br>
 	<div class="row">
 		<div class ="column">
 			<form id = "user_input">
-				<textarea id="utext" name = "utext" placeholder="Enter some text! For example, Today I had a very, very, very good day. This happens very happen often and that is very good. I hope tomorrow will also be a good day. Good is the new good. Good people are also good."></textarea><br>
-				<button type="button" id = "enter" name ="enter">Enter</button>
+				<textarea id="utext" name = "utext" placeholder="Enter some text! Give us some text with overused words and we'll let you know which overused words are overused! You can even tell us which overused words to ignore."></textarea>
+				<br>
+				<button type="button" id = "enter" name ="enter">enter</button>
 			</form>
 		</div>
 
@@ -23,15 +25,15 @@
 				<h2 style="color:#43587c">current settings</h2>
 				<p id = "max">measure of redundancy: 10% of the word count</p>
 				<textarea id="ignore" name = "ignore" placeholder="Enter words to ignore"></textarea><br>
-				<button type="button" id = "ig_but" name ="ig_but">Submit</button>
+				<button type="button" id = "ig_but" name ="ig_but">submit</button>
 				<p id = "ignore_list"></p>
 			</div><br><hr>
 			<div id = 'result_words'>
 				<h2 id = "result_msg" style="color:#43587c">redundant words</h2>
 				<table id = "table_result" style="width:100%">
 					<tr>
-						<th>Words</th>
-						<th>Occurences</th>
+						<th>words</th>
+						<th>occurences</th>
 					</tr>
 					<tr><p id = words_list></p></tr>
 				</table>

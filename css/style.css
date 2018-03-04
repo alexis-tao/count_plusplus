@@ -8,7 +8,7 @@ body {
 #title {
 	font-size:50px;
 	text-align: center;
-	color:#657591;
+	color:#6d9eeb;
 }
 #utext {
 	height:400px;
@@ -19,7 +19,7 @@ body {
 }
 #ignore {
 	font-size: 16px;
-	width: 350px;
+	width: 500px;
 	font-family:'Quicksand';
 	border-radius: 6px;
 }
@@ -43,8 +43,8 @@ textarea{
     float: left;
     width: 50%;
 }
-#enter {
-	font-size: 20px;
+#enter {	
+	font-size: 18px;
 	font-family: 'Quicksand';
 	border: 2px solid #657591;
 	border-radius: 8px;
