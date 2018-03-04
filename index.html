@@ -71,12 +71,14 @@
 			for (i= 0; i < arr.length ; i++){
 				var exist = false;
 				for (j = 0 ; j < unique.length; j++) {	
-					if (arr[i] == unique[j] || !check_punc(arr[i], unique[j]) || !check_punc(unique[j], arr[i])) {
+					if (arr[i] == unique[j] || check_punc(arr[i], unique[j]) || check_punc(unique[j], arr[i])) {
 						exist = true ;
 					}
 				} 
 				if (exist == false) {
-					unique.push(arr[i]);
+					var x = remove_punc(arr[i]); 
+					//	alert(x);
+					unique.push(x);
 				}
 			}
 			
@@ -88,7 +90,7 @@
 			for (i =0; i < unique.length; i++){
 				count[i] = 0;
 				for (j = 0 ; j < arr.length; j++) {	
-					if (arr[j] == unique[i] || !check_punc(arr[j], unique[i]) || !check_punc(unique[i], arr[j])) {
+					if (arr[j] == unique[i] || check_punc(arr[j], unique[i]) || check_punc(unique[i], arr[j])) {
 						//var x = unique.indexof(unique[i]);
 						count[i] += 1;
 					}
@@ -114,15 +116,27 @@
 			document.getElementById("words_list").innerHTML = text; 
 		});
 		
-		// check_punc(word, unique) returns false if word and unique are the same because it means they're not unique, ignoring all cases, and puncuation, otherwise true if they are unique
+		// check_punc(word, unique) returns true if word and unique are the same ignoring punc, otherwise false
 		function check_punc(word,unique){
-			var punc = [",", ".", "!"];
+			var punc = [",", ".", "!","?"];
 			for (i = 0 ; i< punc.length; i++) {
-				if (word.includes(punc[i], 0) && (word.substring(0, word.length-2) == unique)) {
-					return false;
+				if (word.includes(punc[i], 0) && (word.replace(punc[i], "") == unique)) {
+					return true;
 				}
 			}
-			return true;
+			var word_lower = word.toLowerCase();
+			var unique_lower = unique.toLowerCase();
+			return word_lower == unique_lower;
+		}
+
+		function remove_punc(word){
+			var punc = [",", ".", "!","?"];
+			for (i = 0 ; i< punc.length; i++) {
+				if (word.includes(punc[i], 0)) {
+					return (word.replace(punc[i], ""));
+				}
+			}
+			return word;
 		}
 
 	</script>
