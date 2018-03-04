@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class ="column">
 			<form id = "user_input">
-				<textarea id="utext" name = "utext" placeholder="Enter some text! For example, Today I had a very, very, very good day. This happens very happen often and that is very good. I hope tomorrow will also be a good day. Good is the new good. Good people are also good. "></textarea><br>
+				<textarea id="utext" name = "utext" placeholder="Enter some text! For example, Today I had a very, very, very good day. This happens very happen often and that is very good. I hope tomorrow will also be a good day. Good is the new good. Good people are also good."></textarea><br>
 				<button type="button" id = "enter" name ="enter">Enter</button>
 			</form>
 		</div>
@@ -22,7 +22,7 @@
 			<div id = 'settings'>
 				<h2 style="color:#43587c">current settings</h2>
 				<p id = "max">maximum frequency: 20% of the word count</p>
-				<p>words ignoring: I, the, this, are, will</p>
+				<p>words ignoring: I, the, this, are, will, is, to, of, that, as, for, and</p>
 			</div><br><hr>
 			<div id = 'result_words'>
 				<h2 id = "result_msg" style="color:#43587c">redundant words</h2>
@@ -42,7 +42,7 @@
 		$( "#enter" ).click(function() {
 			var value = $("#utext").val();
 			var arr = value.split(" ");
-			var max_freq = parseInt(0.2*arr.length,0); 
+			var max_freq = parseInt(0.1*arr.length,0); 
 			document.getElementById("max").innerHTML = "maximum frequency: " + max_freq;
 			var text = "";
 			var unique  = [];
