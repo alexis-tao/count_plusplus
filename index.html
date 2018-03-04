@@ -22,6 +22,9 @@
 			<div id = 'settings'>
 				<h2 style="color:#43587c">current settings</h2>
 				<p id = "max">measure of redundancy: 10% of the word count</p>
+				<textarea id="ignore" name = "ignore" placeholder="Enter words to ignore"></textarea><br>
+				<button type="button" id = "ig_but" name ="ig_but">Submit</button>
+				<p id = "ignore_list"></p>
 			</div><br><hr>
 			<div id = 'result_words'>
 				<h2 id = "result_msg" style="color:#43587c">redundant words</h2>
@@ -39,8 +42,20 @@
 
 	<script type ="text/javascript">
 		
+		var words_to_ig = [];
+		$( "#ig_but" ).click(function() {
+			var value = $("#ignore").val();
+			words_to_ig = value.split(" ");
+			var text= "words to ignore: ";
 
-		
+			for (i= 0; i < words_to_ig.length ; i++){
+				text+= words_to_ig[i] + " ";
+			}
+			for (i = 0 ; i < words_to_ig.length; i++){
+				words_to_ig[i] = remove_punc(words_to_ig[i]);
+			}
+			document.getElementById("ignore_list").innerHTML = text; 
+		});
 
 		$( "#enter" ).click(function() {
 			//entire text input
@@ -60,7 +75,7 @@
 				document.getElementById("table_result").deleteRow(i);
 			}
 
-			var text = " ";
+			var text = 	" ";
 
 			//array of unique words 
 			var unique  = [];
@@ -104,8 +119,9 @@
 			while(num_uniques > 0 && i > -1) {
 				var word = unique.pop();
 				var num = count[i];
+				var mem = false;
 
-				if (num > max_freq) {
+				if (num > max_freq && !member(word, words_to_ig)) {
 					$('table').append( "<tr> \ <td>"+ word + "</td> \ <td>" + num +"</td></tr>"); 
 				}
 				i--;
@@ -137,6 +153,15 @@
 				}
 			}
 			return word;
+		}
+
+		function member (a, arr){
+			for (i = 0; i < arr.length; i++){
+				if (a == arr[i]){
+					return true;
+				}
+			}
+			return false; 
 		}
 
 	</script>
