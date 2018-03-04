@@ -22,7 +22,6 @@
 			<div id = 'settings'>
 				<h2 style="color:#43587c">current settings</h2>
 				<p id = "max">measure of redundancy: 10% of the word count</p>
-				<p>words ignoring:</p>
 			</div><br><hr>
 			<div id = 'result_words'>
 				<h2 id = "result_msg" style="color:#43587c">redundant words</h2>
@@ -129,6 +128,7 @@
 			return word_lower == unique_lower;
 		}
 
+		// remove_punc(word) returns word with all punctuation removed
 		function remove_punc(word){
 			var punc = [",", ".", "!","?"];
 			for (i = 0 ; i< punc.length; i++) {
