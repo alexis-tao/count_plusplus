@@ -43,21 +43,25 @@
 			var occurs = 0; 
 
 			for (i= 0; i < arr.length ; i++){
+				var a = parseInt(arr[i])];
 				var exist = false;
 				for (j = 0 ; j < unique.length; j++) {	
 					if (arr[i] == unique[j]) {
 						exist = true;
-						var top = count.pop();
-						occurs = top + 1; 
 					}
-				}
-				if (exist) {
-					count.push(occurs);
 				}
 				else if (exist == false) {
 					unique.push(arr[i]);
-					occurs = 1;
-					count.push(1);
+					count[a] = 1;
+				}
+			}
+			count.length = unique.length;
+
+			for (i =0; i < unique.length; i++){
+				for (j = 0 ; j < arr.length; j++) {	
+					if (arr[j] == unique[i]) {
+						count[i]++;
+					}
 				}
 			}
 
@@ -65,7 +69,8 @@
 
 			while(num_uniques > 0) {
 				var word = unique.pop();
-				var num = count.pop();
+				var word_int = parseInt(word);
+				var num = count[word_int];
 				if (num > max_freq) {
 					text += "<li>"+ word + " " + num +"</li>"; 
 				}
