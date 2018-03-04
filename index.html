@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
- <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="css/style.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <head>
@@ -13,35 +13,76 @@
 	<div class="row">
 		<div class ="column">
 			<form id = "user_input">
-				<input type = "textbox" id="text" name = "text" placeholder="Enter some text! For example, Today I had a very, very, very good day. This happens very happen often and that is very good. I hope tomorrow will also be a good day. Good is the new good. Good people are also good. "></textarea> <br>
-				<button type="button" name ="textbox" id ="textbox" >Enter</button>
+				<input type = "text" id="utext" name = "utext" placeholder="Enter some text! For example, Today I had a very, very, very good day. This happens very happen often and that is very good. I hope tomorrow will also be a good day. Good is the new good. Good people are also good. "><br>
+				<button type="button" id = "enter" name ="enter">Enter</button>
 			</form>
 		</div>
 
 		<div class ="column">
 			<div id = 'settings'>
 				<h2 style="color:#43587c">current settings</h2>
-				<p>maximum frequency: 4</p>
-				<p>list of words to ignore: I, the, this, are, will</p>
+				<p id = "max">maximum frequency: 20% of the word count</p>
+				<p>words ignoring: I, the, this, are, will</p>
 			</div><br><hr>
 			<div id = 'result_words'>
-				<h2 style="color:#43587c">you've used these words more than 4 times:</h2>
-				<li>very: 5 occurences</li>
-				<li>good: 7 occurences</li><br>
+				<h2 id = "result" style="color:#43587c"></h2>
+				<p id = "words"></p> <br>
 			</div>
 		</div>
 	</div>
 
-	<script>
-		$( "#textbox" ).click(function() {
-			//var wordsArray[]; 
-			var value = $("#text").val();
-			//wordsArray.push(value); 
-			var seperate = value.split();
-			alert(seperate);
- 			//alert( $("#text").val() );
-		});
-	</script>
+	<script type ="text/javascript">
+		$( "#enter" ).click(function() {
+			var value = $("#utext").val();
+			var arr = value.split(" ");
+			var max_freq = parseInt(0.2*arr.length,0); 
+			document.getElementById("max").innerHTML = "maximum frequency: " + max_freq;
+			var text = "<ul>";
+			var unique  = [];
+			var count = []; 
+			var occurs = 0; 
 
-</body>
+			for (i= 0; i < arr.length ; i++){
+				var exist = false;
+				for (j = 0 ; j < unique.length; j++) {	
+					if (arr[i] == unique[j]) {
+						exist = true;
+						var top = count.pop();
+						occurs = top + 1; 
+					}
+				}
+				if (exist) {
+					count.push(occurs);
+				}
+				else if (exist == false) {
+					unique.push(arr[i]);
+					occurs = 1;
+					count.push(1);
+				}
+			}
+
+			var num_uniques = unique.length;
+
+			while(num_uniques > 0) {
+				var word = unique.pop();
+				var num = count.pop();
+				if (num > max_freq) {
+					text += "<li>"+ word + " " + num +"</li>"; 
+				}
+				num_uniques = num_uniques - 1;
+			}
+
+			text += "<ul>";
+			if (max_freq == 1) {
+				document.getElementById("result").innerHTML = "words used more than " + max_freq + 	" time: ";
+			}
+			else {
+				document.getElementById("result").innerHTML = "words used more than " + max_freq + 	" times: ";
+			}
+			document.getElementById("words").innerHTML = text;
+		});
+		
+
+	</script>
+	</body>
 </html> 
