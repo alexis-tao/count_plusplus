@@ -22,7 +22,7 @@
 			<div id = 'settings'>
 				<h2 style="color:#43587c">current settings</h2>
 				<p id = "max">measure of redundancy: 10% of the word count</p>
-				<p>words ignoring: I, the, this, are, is, to, of, that, as, for, and</p>
+				<p>words ignoring:</p>
 			</div><br><hr>
 			<div id = 'result_words'>
 				<h2 id = "result_msg" style="color:#43587c">redundant words</h2>
@@ -39,6 +39,10 @@
 	</div>
 
 	<script type ="text/javascript">
+		
+
+		
+
 		$( "#enter" ).click(function() {
 			//entire text input
 			var value = $("#utext").val();
@@ -67,14 +71,13 @@
 			for (i= 0; i < arr.length ; i++){
 				var exist = false;
 				for (j = 0 ; j < unique.length; j++) {	
-					if (arr[i] == unique[j]) {
+					if (arr[i] == unique[j] || !check_punc(arr[i], unique[j]) || !check_punc(unique[j], arr[i])) {
 						exist = true ;
 					}
 				} 
 				if (exist == false) {
 					unique.push(arr[i]);
 				}
-				
 			}
 			
 			//count is an array that counts the occurences of every unique element
@@ -85,7 +88,8 @@
 			for (i =0; i < unique.length; i++){
 				count[i] = 0;
 				for (j = 0 ; j < arr.length; j++) {	
-					if (arr[j] == unique[i]) {
+					if (arr[j] == unique[i] || !check_punc(arr[j], unique[i]) || !check_punc(unique[i], arr[j])) {
+						//var x = unique.indexof(unique[i]);
 						count[i] += 1;
 					}
 				}
@@ -110,6 +114,16 @@
 			document.getElementById("words_list").innerHTML = text; 
 		});
 		
+		// check_punc(word, unique) returns false if word and unique are the same because it means they're not unique, ignoring all cases, and puncuation, otherwise true if they are unique
+		function check_punc(word,unique){
+			var punc = [",", ".", "!"];
+			for (i = 0 ; i< punc.length; i++) {
+				if (word.includes(punc[i], 0) && (word.substring(0, word.length-2) == unique)) {
+					return false;
+				}
+			}
+			return true;
+		}
 
 	</script>
 	</body>
